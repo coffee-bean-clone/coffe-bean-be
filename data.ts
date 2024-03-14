@@ -1,0 +1,108 @@
+import TProduct from './types/TProduct';
+
+const products: TProduct[] = [
+  {
+    title: '(36%할인)아메리카노 컵커피 300ml 10입(박스)',
+    price: 12900,
+    mainCategory: '파우치&컵 커피',
+    subCategory: '컵 커피',
+    isSale: true,
+    isNew: false,
+    detailImage: 'https://www.coffeebeankorea.com/data/SmartEditContent/20230725102333_4339_1.jpg',
+    productImages: [
+      'https://www.coffeebeankorea.com//data/productImages/b/3/11110058.jpg',
+      'https://www.coffeebeankorea.com//data/productImages/c/3/11110058.jpg',
+      'https://www.coffeebeankorea.com//data/productImages/d/3/11110058.jpg',
+    ],
+  },
+  {
+    title: '(67%할인)커피빈 잉글리쉬 브렉퍼스트라떼 파우치(10개입)',
+    price: 5000,
+    mainCategory: '파우치&컵 커피',
+    subCategory: '파우치 커피',
+    isSale: true,
+    isNew: false,
+    detailImage: 'https://www.coffeebeankorea.com/data/SmartEditContent/20220330091628_2026_1.jpg',
+    productImages: [
+      'https://www.coffeebeankorea.com//data/productImages/b/3/11110042.jpg',
+      'https://www.coffeebeankorea.com//data/productImages/c/1/11110042.jpg',
+    ],
+  },
+  {
+    title: '커피빈 실속선물세트A호',
+    price: 18500,
+    mainCategory: '스틱 커피',
+    subCategory: '스틱 커피',
+    isSale: false,
+    isNew: false,
+    detailImage: 'https://www.coffeebeankorea.com/data/SmartEditContent/20211005120527_4212_1.jpg',
+    productImages: [
+      'https://www.coffeebeankorea.com//data/productImages/b/3/12500022.jpg',
+      'https://www.coffeebeankorea.com//data/productImages/c/1/12500022.jpg',
+    ],
+  },
+  {
+    title: '(34%할인)커피빈 드립백(모카자바 블렌드) 5개입',
+    price: 3900,
+    mainCategory: '분쇄형 커피',
+    subCategory: '드립백',
+    isSale: true,
+    isNew: false,
+    detailImage: 'http://www.coffeebeankorea.com/data/SmartEditContent/20200904125854_1101.jpg',
+    productImages: [
+      'https://www.coffeebeankorea.com//data/productImages/b/1/11110019.jpg',
+      'https://www.coffeebeankorea.com//data/productImages/c/1/11110019.jpg',
+      'https://www.coffeebeankorea.com//data/productImages/d/1/11110019.jpg',
+      'https://www.coffeebeankorea.com//data/productImages/e/1/11110019.jpg',
+      'https://www.coffeebeankorea.com//data/productImages/f/1/11110019.jpg',
+    ],
+  },
+  {
+    title: 'Pepper Mint 250T',
+    price: 50000,
+    mainCategory: '티',
+    subCategory: '클래식 티',
+    isSale: true,
+    isNew: false,
+    detailImage: 'http://www.coffeebeankorea.com/data/SmartEditContent/20170331104848_45574.jpg',
+    productImages: ['https://www.coffeebeankorea.com//data/productImages/b/3/2865061120.jpg'],
+  },
+  {
+    title: '[네스프레소 전용] 캡슐커피(모카자바 블렌드)',
+    price: 7500,
+    mainCategory: '캡슐 커피',
+    subCategory: '네스프레소 호환용',
+    isSale: false,
+    isNew: false,
+    detailImage: 'https://www.coffeebeankorea.com/data/SmartEditContent/20220629090315_1176_1.jpg',
+    productImages: [
+      'https://www.coffeebeankorea.com//data/productImages/b/3/11110039.jpg',
+      'https://www.coffeebeankorea.com//data/productImages/c/1/11110039.jpg',
+    ],
+  },
+  {
+    title: '(50%할인) Premium Espresso',
+    price: 4900,
+    mainCategory: '캡슐 커피',
+    subCategory: 'CBTL 호환용',
+    isSale: true,
+    isNew: false,
+    detailImage: 'http://www.coffeebeankorea.com/data/SmartEditContent/20160818150234_75897.jpg',
+    productImages: ['https://www.coffeebeankorea.com//data/productImages/b/3/1800101000.jpg'],
+  },
+  {
+    title: 'MOCHA JAVA 200g',
+    price: 14000,
+    mainCategory: '원두',
+    subCategory: '라이트 로스트',
+    isSale: false,
+    isNew: false,
+    detailImage: '',
+    productImages: [
+      'https://www.coffeebeankorea.com//data/productImages/b/3/11110045.jpg',
+      'https://www.coffeebeankorea.com//data/productImages/c/1/11110045.jpg',
+    ],
+  },
+];
+
+export default products;
