@@ -2,8 +2,8 @@ import fastify from 'fastify';
 import dotenv from 'dotenv';
 import cors from '@fastify/cors';
 import Product from './models/Product';
-import mongoConnection from './db';
-import products from './data';
+import mongoConnection from './database/db';
+import products from './database/data';
 
 const server = fastify();
 

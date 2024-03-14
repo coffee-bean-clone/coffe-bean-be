@@ -1,4 +1,4 @@
-import TProduct from './types/TProduct';
+import TProduct from '../types/TProduct';
 
 const products: TProduct[] = [
   {
