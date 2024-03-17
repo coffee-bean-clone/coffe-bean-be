@@ -55,10 +55,8 @@ server.get('/product/tea', async (_, res) => {
   res.send(products);
 });
 
-if (process.env.PORT) {
-  server.listen({ port: +process.env.PORT }, (error, address) => {
-    if (error) console.log('서버 에러');
-    mongoConnection();
-    console.log(`${address} 포트에서 서버 시작했습니다.`);
-  });
-}
+server.listen({ port: 80 }, (error, address) => {
+  if (error) console.log('서버 에러');
+  mongoConnection();
+  console.log(`${address} 포트에서 서버 시작했습니다.`);
+});
