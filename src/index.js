@@ -59,9 +59,11 @@ server.get('/product/tea', (_, res) => __awaiter(void 0, void 0, void 0, functio
     const products = yield Product_1.default.find({ mainCategory: '티' });
     res.send(products);
 }));
-server.listen({ port: 80 }, (error, address) => {
-    if (error)
-        console.log('서버 에러');
-    (0, db_1.default)();
-    console.log(`${address} 포트에서 서버 시작했습니다.`);
-});
+if (process.env.PORT) {
+    server.listen({ port: +process.env.PORT }, (error, address) => {
+        if (error)
+            console.log('서버 에러');
+        (0, db_1.default)();
+        console.log(`${address} 포트에서 서버 시작했습니다.`);
+    });
+}
