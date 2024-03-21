@@ -22,6 +22,9 @@ const server = (0, fastify_1.default)();
 dotenv_1.default.config();
 server.register(cors_1.default);
 server.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    res.send('서버 접근 완료');
+}));
+server.get('/data/add', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     console.log(data_1.default.length);
     try {
         for (const productData of data_1.default) {
@@ -43,7 +46,19 @@ server.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     catch (error) {
         console.error('상품 추가 오류:', error);
     }
-    res.send(data_1.default.length);
+    const productTitles = [];
+    for (const product of data_1.default) {
+        productTitles.push(product.title);
+    }
+    res.send(`${productTitles} 데이터 추가 완료`);
+}));
+server.get('/data/delete', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    yield Product_1.default.deleteMany({});
+    res.send(`데이터 삭제 완료`);
+}));
+server.get('/data/view', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const products = yield Product_1.default.find({});
+    res.send(products);
 }));
 server.get('/product/all', (_, res) => __awaiter(void 0, void 0, void 0, function* () {
     const products = yield Product_1.default.find({});
@@ -57,12 +72,32 @@ server.get('/product/new', (_, res) => __awaiter(void 0, void 0, void 0, functio
     const products = yield Product_1.default.find({ isNew: true });
     res.send(products);
 }));
-server.get('/product/coffee', (_, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const products = yield Product_1.default.find({ mainCategory: '커피' });
+server.get('/product/pouch_and_cupcoffee', (_, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const products = yield Product_1.default.find({ mainCategory: '파우치&컵 커피' });
+    res.send(products);
+}));
+server.get('/product/pouch_and_cupcoffee/pouch', (_, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const condition = [{ mainCategory: '파우치&컵 커피' }, { subCategory: '파우치' }];
+    const products = yield Product_1.default.find({ $and: condition });
+    res.send(products);
+}));
+server.get('/product/pouch_and_cupcoffee/cupcoffee', (_, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const condition = [{ mainCategory: '파우치&컵 커피' }, { subCategory: '컵 커피' }];
+    const products = yield Product_1.default.find({ $and: condition });
     res.send(products);
 }));
 server.get('/product/tea', (_, res) => __awaiter(void 0, void 0, void 0, function* () {
     const products = yield Product_1.default.find({ mainCategory: '티' });
+    res.send(products);
+}));
+server.get('/product/tea/classic', (_, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const condition = [{ mainCategory: '티' }, { subCategory: '클래식 티' }];
+    const products = yield Product_1.default.find({ $and: condition });
+    res.send(products);
+}));
+server.get('/product/stick', (_, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const condition = [{ mainCategory: '스틱 커피' }];
+    const products = yield Product_1.default.find({ $and: condition });
     res.send(products);
 }));
 if (process.env.PORT) {

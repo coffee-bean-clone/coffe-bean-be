@@ -10,8 +10,11 @@ const server = fastify();
 dotenv.config();
 
 server.register(cors);
-
 server.get('/', async (req, res) => {
+  res.send('서버 접근 완료');
+});
+
+server.get('/data/add', async (req, res) => {
   console.log(products.length);
   try {
     for (const productData of products) {
@@ -33,7 +36,21 @@ server.get('/', async (req, res) => {
   } catch (error) {
     console.error('상품 추가 오류:', error);
   }
-  res.send(products.length);
+  const productTitles = [];
+  for (const product of products) {
+    productTitles.push(product.title);
+  }
+  res.send(`${productTitles} 데이터 추가 완료`);
+});
+
+server.get('/data/delete', async (req, res) => {
+  await Product.deleteMany({});
+  res.send(`데이터 삭제 완료`);
+});
+
+server.get('/data/view', async (req, res) => {
+  const products = await Product.find({});
+  res.send(products);
 });
 
 server.get('/product/all', async (_, res) => {
@@ -51,13 +68,32 @@ server.get('/product/new', async (_, res) => {
   res.send(products);
 });
 
-server.get('/product/coffee', async (_, res) => {
-  const products = await Product.find({ mainCategory: '커피' });
+server.get('/product/pouch_and_cupcoffee', async (_, res) => {
+  const products = await Product.find({ mainCategory: '파우치&컵 커피' });
   res.send(products);
 });
-
+server.get('/product/pouch_and_cupcoffee/pouch', async (_, res) => {
+  const condition = [{ mainCategory: '파우치&컵 커피' }, { subCategory: '파우치' }];
+  const products = await Product.find({ $and: condition });
+  res.send(products);
+});
+server.get('/product/pouch_and_cupcoffee/cupcoffee', async (_, res) => {
+  const condition = [{ mainCategory: '파우치&컵 커피' }, { subCategory: '컵 커피' }];
+  const products = await Product.find({ $and: condition });
+  res.send(products);
+});
 server.get('/product/tea', async (_, res) => {
   const products = await Product.find({ mainCategory: '티' });
+  res.send(products);
+});
+server.get('/product/tea/classic', async (_, res) => {
+  const condition = [{ mainCategory: '티' }, { subCategory: '클래식 티' }];
+  const products = await Product.find({ $and: condition });
+  res.send(products);
+});
+server.get('/product/stick', async (_, res) => {
+  const condition = [{ mainCategory: '스틱 커피' }];
+  const products = await Product.find({ $and: condition });
   res.send(products);
 });
 
