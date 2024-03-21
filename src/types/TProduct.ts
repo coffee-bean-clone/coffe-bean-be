@@ -6,7 +6,7 @@ type TProduct = {
   subCategory: string;
   isSale: boolean;
   isNew: boolean;
-  detailImage: string;
+  detailImage: string | null;
   productImages: string[];
 };
 

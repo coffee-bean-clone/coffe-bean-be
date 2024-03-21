@@ -22,6 +22,7 @@ const server = (0, fastify_1.default)();
 dotenv_1.default.config();
 server.register(cors_1.default);
 server.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log(data_1.default.length);
     try {
         for (const productData of data_1.default) {
             try {
@@ -31,13 +32,18 @@ server.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             }
             catch (error) {
                 console.log(`중복 상품 '${productData.title}'은(는) 추가 되지 않았습니다.`);
+                console.log(error);
             }
+            // const newProduct = new Product(productData);
+            // await newProduct.save();
+            // console.log(`${newProduct.title}이 추가되었습니다.`);
         }
         console.log('상품 및 상품 이미지가 성공적으로 추가되었습니다.');
     }
     catch (error) {
         console.error('상품 추가 오류:', error);
     }
+    res.send(data_1.default.length);
 }));
 server.get('/product/all', (_, res) => __awaiter(void 0, void 0, void 0, function* () {
     const products = yield Product_1.default.find({});

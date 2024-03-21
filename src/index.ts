@@ -12,6 +12,7 @@ dotenv.config();
 server.register(cors);
 
 server.get('/', async (req, res) => {
+  console.log(products.length);
   try {
     for (const productData of products) {
       try {
@@ -21,13 +22,18 @@ server.get('/', async (req, res) => {
         console.log(`${newProduct.title}이 추가되었습니다.`);
       } catch (error) {
         console.log(`중복 상품 '${productData.title}'은(는) 추가 되지 않았습니다.`);
+        console.log(error);
       }
-    }
 
+      // const newProduct = new Product(productData);
+      // await newProduct.save();
+      // console.log(`${newProduct.title}이 추가되었습니다.`);
+    }
     console.log('상품 및 상품 이미지가 성공적으로 추가되었습니다.');
   } catch (error) {
     console.error('상품 추가 오류:', error);
   }
+  res.send(products.length);
 });
 
 server.get('/product/all', async (_, res) => {
@@ -55,8 +61,10 @@ server.get('/product/tea', async (_, res) => {
   res.send(products);
 });
 
-server.listen({ port: 80 }, (error, address) => {
-  if (error) console.log('서버 에러');
-  mongoConnection();
-  console.log(`${address} 포트에서 서버 시작했습니다.`);
-});
+if (process.env.PORT) {
+  server.listen({ port: +process.env.PORT }, (error, address) => {
+    if (error) console.log('서버 에러');
+    mongoConnection();
+    console.log(`${address} 포트에서 서버 시작했습니다.`);
+  });
+}
