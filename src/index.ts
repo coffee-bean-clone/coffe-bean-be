@@ -62,7 +62,7 @@ server.get('/product/tea', async (_, res) => {
 });
 
 if (process.env.PORT) {
-  server.listen({ port: +process.env.PORT }, (error, address) => {
+  server.listen({ port: +process.env.PORT, host: '0.0.0.0' }, (error, address) => {
     if (error) console.log('서버 에러');
     mongoConnection();
     console.log(`${address} 포트에서 서버 시작했습니다.`);

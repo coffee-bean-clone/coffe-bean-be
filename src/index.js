@@ -66,7 +66,7 @@ server.get('/product/tea', (_, res) => __awaiter(void 0, void 0, void 0, functio
     res.send(products);
 }));
 if (process.env.PORT) {
-    server.listen({ port: +process.env.PORT }, (error, address) => {
+    server.listen({ port: +process.env.PORT, host: '0.0.0.0' }, (error, address) => {
         if (error)
             console.log('서버 에러');
         (0, db_1.default)();
